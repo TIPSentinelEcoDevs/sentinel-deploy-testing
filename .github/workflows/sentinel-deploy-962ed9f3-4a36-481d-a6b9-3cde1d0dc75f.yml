@@ -1,4 +1,4 @@
-name: Deploy Content to TipAmbaWolvesE5ForTests [962ed9f3-4a36-481d-a6b9-3cde1d0dc75f]
+name: Deploy Content to SentinelTipDev [962ed9f3-4a36-481d-a6b9-3cde1d0dc75f]
 # Note: This workflow will deploy everything in the root directory.
 # To deploy content only from a specific path (for example SentinelContent):
 #   1. Add the target path to the "paths" property like such
@@ -21,11 +21,11 @@ jobs:
   deploy-content:
     runs-on: windows-latest
     env:
-      resourceGroupName: 'AmbaWolvesE5ResourceGroup'
-      workspaceName: 'TipAmbaWolvesE5ForTests'
-      workspaceId: '5a699b49-97c7-467f-acc7-cf4e118e4a86'
+      resourceGroupName: 'ASI'
+      workspaceName: 'SentinelTipDev'
+      workspaceId: 'cf8423ec-2ae1-4928-a7dd-0c5824690591'
       directory: '${{ github.workspace }}'
-      cloudEnv: 'AzureCloud'
+      cloudEnv: 'AzurePPE'
       creds: ${{ secrets.AZURE_SENTINEL_CREDENTIALS_962ed9f34a36481da6b93cde1d0dc75f }}
       contentTypes: 'AnalyticsRule,AutomationRule,HuntingQuery,Parser,Playbook,Workbook'
       branch: 'main'
@@ -71,7 +71,7 @@ jobs:
         enable-AzPSSession: true
 
     - name: Checkout
-      uses: actions/checkout@v1
+      uses: actions/checkout@v3
     
     - name: Deploy Content to Azure Sentinel
       uses: azure/powershell@v1
